@@ -1,0 +1,24 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @user %>
+
+<h2>User's Tasks</h2>
+<ul>
+  <% @user.tasks.each do |task| %>
+    <li><%= link_to task.title, edit_task_path(task) %>
+      <%= button_to "delete", task_path(task), method: :delete %>
+      <%= button_to "mark completed", mark_as_completed_task_path(task), method: :post %>
+    </li>
+  <% end %>
+</ul>
+
+<div>
+  <%= link_to "New Task", new_task_path(user: @user) %>
+</div>
+
+<div>
+  <%= link_to "Edit this user", edit_user_path(@user) %> |
+  <%= link_to "Back to users", users_path %>
+
+  <%= button_to "Destroy this user", @user, method: :delete %>
+</div>
